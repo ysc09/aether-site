@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI &amp; Data — Aether</title>
+<meta name="description" content="The crew-state model, results and responses.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="css/aether.css">
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="index.html"><img src="assets/favicon.png" alt="Aether logo">AETHER</a>
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav id="nav"><a href="index.html">Home</a><a href="problem.html">Problem &amp; Research</a><a href="habitat.html">Habitat</a><a href="ai.html" class="active">AI &amp; Data</a><a href="electronics.html">Electronics</a><a href="timeline.html">Timeline</a><a href="team.html">Team</a><a href="contact.html">Contact</a></nav>
+</div></header>
+<main><div class="wrap">
+
+<h1>AI &amp; data</h1>
+<p>The software runs on a hub inside the habitat. Sensors and the check-in station feed it; it classifies the crew's state, decides on a response using plain rules, sends the response to the lights, speaker and fan, and logs everything. Health and psychological data never leave the habitat unencrypted.</p>
+
+<h2>The loop</h2>
+<ol>
+  <li><b>Sense</b> — sentiment from the daily check-in, biometrics from a wearable, and cabin readings (CO₂, temperature, humidity, pressure, light).</li>
+  <li><b>Classify</b> — a Random Forest model labels the crew state as Neutral, Suspected Illness or Underlying Issue.</li>
+  <li><b>Decide</b> — fixed rules with hold times so the habitat does not flicker between states.</li>
+  <li><b>Act</b> — lighting color and level, soundscape, fan and greenhouse airflow, activity suggestions.</li>
+  <li><b>Log</b> — every cycle goes to an SD card and the dashboard.</li>
+</ol>
+
+<h2>Model results</h2>
+<p>We compared three classifiers on the same simulated dataset. Random Forest did best and is the one we use.</p>
+<div class="table-wrap"><table><thead><tr><th class="">Model</th><th class="num">Accuracy</th><th class="num">F1</th><th class="num">Precision</th><th class="num">Recall</th></tr></thead><tbody><tr><td class="">Random Forest (chosen)</td><td class="num">0.83</td><td class="num">0.83</td><td class="num">0.84</td><td class="num">0.83</td></tr><tr><td class="">Logistic Regression</td><td class="num">0.82</td><td class="num">0.81</td><td class="num">0.83</td><td class="num">0.82</td></tr><tr><td class="">SVM (RBF)</td><td class="num">0.76</td><td class="num">0.74</td><td class="num">0.75</td><td class="num">0.76</td></tr></tbody></table></div>
+<p class="small muted">These are our own experiments on simulated data. When we present the 83%, we state the dataset size and split with it, and we say the result "supports" the approach rather than proves it.</p>
+
+<h2>What the model relies on</h2>
+<div class="table-wrap"><table><thead><tr><th class="">Feature</th><th class="num">Importance</th></tr></thead><tbody><tr><td class="">Check-in sentiment</td><td class="num">57%</td></tr><tr><td class="">Biometric stress index</td><td class="num">35%</td></tr><tr><td class="">Personality encoding</td><td class="num">4%</td></tr><tr><td class="">Job function</td><td class="num">4%</td></tr></tbody></table></div>
+<p>More than half of the signal comes from the check-in sentiment. To see how fragile that is, we biased the sentiment score by +0.3 and re-ran the models:</p>
+<div class="table-wrap"><table><thead><tr><th class="">Model</th><th class="num">Accuracy</th><th class="num">F1</th></tr></thead><tbody><tr><td class="">Random Forest</td><td class="num">0.54</td><td class="num">0.53</td></tr><tr><td class="">Logistic Regression</td><td class="num">0.52</td><td class="num">0.49</td></tr><tr><td class="">SVM (RBF)</td><td class="num">0.51</td><td class="num">0.47</td></tr></tbody></table></div>
+<p>Every model drops to about chance. A system that only listens to what people say is easy to throw off, which is why Aether also uses biometrics and the environment, and why the model needs regular calibration.</p>
+
+<h2>What the habitat does in response</h2>
+<ul>
+  <li><b>Lighting</b> — neutral white during the day; warm amber in the evening or when stress is elevated.</li>
+  <li><b>Sound</b> — natural soundscapes to mask machinery noise; a soft tone when a stressed state clears.</li>
+  <li><b>Air</b> — more airflow from the greenhouse to the sanctuary.</li>
+  <li><b>Suggestions</b> — greenhouse care, exercise, social time or VR relaxation, matched to the person.</li>
+</ul>
+
+<h2>Privacy and limits</h2>
+<p>Data is processed on board. Links to Earth are encrypted and records are anonymized. The output is a crew-state label and a recommendation for the crew and mission planners. The system supports decisions; it does not diagnose anyone.</p>
+
+</div></main>
+<footer><div class="wrap">
+  <div class="partners">
+    <a class="tile" href="https://nasahunch.com" rel="noopener"><img src="assets/nasa-hunch.png" alt="NASA HUNCH"></a>
+    <span class="tile"><img src="assets/frisco-cte.png" alt="Frisco ISD Career and Technical Education Center"></span>
+  </div>
+  <p style="margin-top:1rem">Aether is a NASA HUNCH 2026–27 project by students at the Frisco ISD Career and Technical Education Center.</p>
+  <p class="small muted">Dimensions, test results and power figures on this site come from our own project documents and experiments and have not been independently verified against NASA sources.</p>
+  <p class="links"><a href="index.html">Home</a><a href="problem.html">Problem &amp; Research</a><a href="habitat.html">Habitat</a><a href="ai.html">AI &amp; Data</a><a href="electronics.html">Electronics</a><a href="timeline.html">Timeline</a><a href="team.html">Team</a><a href="contact.html">Contact</a></p>
+</div></footer>
+<script>
+(function(){var t=document.getElementById("navToggle"),n=document.getElementById("nav");t.addEventListener("click",function(){var o=n.classList.toggle("open");t.setAttribute("aria-expanded",o);});})();
+</script>
+</body>
+</html>

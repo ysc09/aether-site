@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Electronics — Aether</title>
+<meta name="description" content="Controller, states, pin plan and log record.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="css/aether.css">
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="index.html"><img src="assets/favicon.png" alt="Aether logo">AETHER</a>
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav id="nav"><a href="index.html">Home</a><a href="problem.html">Problem &amp; Research</a><a href="habitat.html">Habitat</a><a href="ai.html">AI &amp; Data</a><a href="electronics.html" class="active">Electronics</a><a href="timeline.html">Timeline</a><a href="team.html">Team</a><a href="contact.html">Contact</a></nav>
+</div></header>
+<main><div class="wrap">
+
+<h1>Electronics</h1>
+<p>The model runs on one microcontroller, one chain of addressable LEDs, a few real sensors, a small fan and a buzzer. We have two controller plans: an ESP32 bought locally, or the Adafruit Feather M4 from the TechRise kit list. Both run the same logic.</p>
+
+<h2>What the controller does</h2>
+<div class="table-wrap"><table><thead><tr><th class="">State</th><th class="">Lighting</th><th class="">Other</th><th class="">Enters when</th></tr></thead><tbody><tr><td class="">Normal</td><td class="">Neutral white, moderate brightness</td><td class="">—</td><td class="">Default</td></tr><tr><td class="">Elevated</td><td class="">Warm amber, fades in over 10 s</td><td class="">Fan on low</td><td class="">CO₂ above 800 ppm, or temperature above 24 °C, or stress above 0.6, held for 30 s</td></tr><tr><td class="">Recovery</td><td class="">Back to neutral over 60 s</td><td class="">One soft tone</td><td class="">CO₂ below 700 ppm and stress below 0.4</td></tr><tr><td class="">Alert</td><td class="">Blue/white pulse</td><td class="">Dashboard banner</td><td class="">Pressure or CO₂ out of range</td></tr></tbody></table></div>
+
+<h2>Pin plan</h2>
+<p>Planned, not yet measured on the bench.</p>
+<div class="table-wrap"><table><thead><tr><th class="">Function</th><th class="">ESP32</th><th class="">Feather M4</th></tr></thead><tbody><tr><td class=""><span class="mono">LED chain (WS2812B)</span></td><td class=""><span class="mono">GPIO5 + 330 Ω</span></td><td class=""><span class="mono">D5 + 470 Ω</span></td></tr><tr><td class=""><span class="mono">I²C A: BME280, console screen, INA219</span></td><td class=""><span class="mono">GPIO21 / 22</span></td><td class=""><span class="mono">SDA / SCL</span></td></tr><tr><td class=""><span class="mono">I²C B: lab screen</span></td><td class=""><span class="mono">GPIO25 / 26</span></td><td class=""><span class="mono">—</span></td></tr><tr><td class=""><span class="mono">Pulse sensor</span></td><td class=""><span class="mono">GPIO34</span></td><td class=""><span class="mono">A0</span></td></tr><tr><td class=""><span class="mono">Gas / CO₂ sensor</span></td><td class=""><span class="mono">GPIO35 via divider</span></td><td class=""><span class="mono">I²C CO₂ sensor</span></td></tr><tr><td class=""><span class="mono">Light sensor</span></td><td class=""><span class="mono">GPIO32</span></td><td class=""><span class="mono">I²C light sensor</span></td></tr><tr><td class=""><span class="mono">Bunk switch</span></td><td class=""><span class="mono">GPIO33</span></td><td class=""><span class="mono">A1 / A2</span></td></tr><tr><td class=""><span class="mono">Buttons (airlock, stress, day/night, reset)</span></td><td class=""><span class="mono">GPIO13 / 14 / 27 / 4</span></td><td class=""><span class="mono">—</span></td></tr><tr><td class=""><span class="mono">Buzzer</span></td><td class=""><span class="mono">GPIO19</span></td><td class=""><span class="mono">—</span></td></tr><tr><td class=""><span class="mono">Fan (MOSFET)</span></td><td class=""><span class="mono">GPIO17</span></td><td class=""><span class="mono">D9</span></td></tr><tr><td class=""><span class="mono">Hatch servo</span></td><td class=""><span class="mono">GPIO18</span></td><td class=""><span class="mono">PWM</span></td></tr><tr><td class=""><span class="mono">microSD chip select</span></td><td class=""><span class="mono">to be assigned</span></td><td class=""><span class="mono">D10</span></td></tr></tbody></table></div>
+
+<h2>Log record</h2>
+<p>Once a second the controller writes one line to the SD card and sends the same line over USB so the dashboard can plot it live.</p>
+<pre>t_ms, temp_C, rh_pct, co2_ppm, p_hPa, lux, act_idx, occupied,
+hr_bpm, stress_idx, state, action, action_ms, led_mA</pre>
+
+<h2>Notes before wiring</h2>
+<ul>
+  <li>3.3 V data driving 5 V LEDs usually needs a level shifter; if the first pixels flicker, that is why.</li>
+  <li>Never run the full LED chain at white from USB. Use a separate 5 V supply rated for at least 3 A, a large capacitor across the rails, and a common ground.</li>
+  <li>The MQ-135 gives an "air contamination index", not real ppm. The board label says so.</li>
+  <li>Measure every board with calipers before cutting any mounting holes.</li>
+</ul>
+<p class="muted">Wiring photos, firmware and the dashboard will be added here as each part is finished.</p>
+
+</div></main>
+<footer><div class="wrap">
+  <div class="partners">
+    <a class="tile" href="https://nasahunch.com" rel="noopener"><img src="assets/nasa-hunch.png" alt="NASA HUNCH"></a>
+    <span class="tile"><img src="assets/frisco-cte.png" alt="Frisco ISD Career and Technical Education Center"></span>
+  </div>
+  <p style="margin-top:1rem">Aether is a NASA HUNCH 2026–27 project by students at the Frisco ISD Career and Technical Education Center.</p>
+  <p class="small muted">Dimensions, test results and power figures on this site come from our own project documents and experiments and have not been independently verified against NASA sources.</p>
+  <p class="links"><a href="index.html">Home</a><a href="problem.html">Problem &amp; Research</a><a href="habitat.html">Habitat</a><a href="ai.html">AI &amp; Data</a><a href="electronics.html">Electronics</a><a href="timeline.html">Timeline</a><a href="team.html">Team</a><a href="contact.html">Contact</a></p>
+</div></footer>
+<script>
+(function(){var t=document.getElementById("navToggle"),n=document.getElementById("nav");t.addEventListener("click",function(){var o=n.classList.toggle("open");t.setAttribute("aria-expanded",o);});})();
+</script>
+</body>
+</html>

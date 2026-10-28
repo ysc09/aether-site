@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Problem &amp; Research — Aether</title>
+<meta name="description" content="Problem statement, requirements, previous solutions and patents.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="css/aether.css">
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="index.html"><img src="assets/favicon.png" alt="Aether logo">AETHER</a>
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav id="nav"><a href="index.html">Home</a><a href="problem.html" class="active">Problem &amp; Research</a><a href="habitat.html">Habitat</a><a href="ai.html">AI &amp; Data</a><a href="electronics.html">Electronics</a><a href="timeline.html">Timeline</a><a href="team.html">Team</a><a href="contact.html">Contact</a></nav>
+</div></header>
+<main><div class="wrap">
+
+<h1>Problem &amp; research</h1>
+<p>This page collects the problem statement, the requirements we are designing to, what already exists, and the patents we looked at.</p>
+
+<h2>Problem statement</h2>
+<p>Long-duration lunar missions expose astronauts to isolation, confinement, circadian disruption and environmental stressors that degrade psychological health and mission performance. Current habitat designs protect the crew physically but do not sense, predict or respond to how the crew is doing.</p>
+
+<h2>What the challenge asks for</h2>
+<ul>
+  <li>AI-driven psychological monitoring and adaptive support for crew mental health.</li>
+  <li>Smart-building technology for life support, environment and power.</li>
+  <li>Habitat conditions that adapt to individual crew needs in real time.</li>
+  <li>A design that is realistic for lunar deployment: size, materials, power and autonomy.</li>
+</ul>
+
+<h2>Requirements and constraints</h2>
+<ul>
+  <li>Display board is strictly 2 ft × 2 ft.</li>
+  <li>At least 20 m³ of habitable volume per crew member (120 m³ recommended).</li>
+  <li>The airlock opens directly into the hygiene area so lunar dust stays out of the living space. Crew quarters are never next to the airlock.</li>
+  <li>Crew quarters are kept away from noisy areas (airlock pumps, life-support machinery, the lab).</li>
+  <li>Hybrid structure: a rigid lower deck, an inflatable upper deck, and a regolith shell for radiation and micrometeoroid protection.</li>
+  <li>Fits an 8.4 m launch fairing.</li>
+  <li>Psychological and health data stay on board and are encrypted; crew consent is part of the protocol.</li>
+</ul>
+
+<h2>How we chose our approach</h2>
+<div class="table-wrap"><table><thead><tr><th class="">Option</th><th class="">Result</th></tr></thead><tbody><tr><td class="">A — physical model only</td><td class="">Rejected: nothing adapts.</td></tr><tr><td class="">B — software dashboard only</td><td class="">Rejected: no hardware.</td></tr><tr><td class="">C — physical model with a microcontroller closed loop</td><td class=""><b>Chosen.</b></td></tr></tbody></table></div>
+
+<h2>Previous solutions</h2>
+<div class="table-wrap"><table><thead><tr><th class="">Solution</th><th class="">Type</th><th class="">What it is missing</th></tr></thead><tbody><tr><td class="">Bigelow BEAM on ISS</td><td class="">Flight prototype (2016–)</td><td class="">Passive inflatable; storage only; 16 m³ is below 20 m³ per crew.</td></tr><tr><td class="">Philips Hue &quot;Natural light&quot;</td><td class="">Consumer product (2022)</td><td class="">Clock-driven only; no input from the person.</td></tr><tr><td class="">Fitbit Sense 2 Body Response</td><td class="">Consumer wearable</td><td class="">Notifies only; no language signal; phone and cloud dependent.</td></tr><tr><td class="">Delos DARWIN</td><td class="">Home wellness platform (2018)</td><td class="">Senses the house, not the person; cloud algorithms.</td></tr><tr><td class="">CIMON-2 (Airbus / IBM / DLR, ISS 2019)</td><td class="">Flight prototype</td><td class="">Language-only emotion; relies on an Earth cloud service that has since been retired.</td></tr></tbody></table></div>
+
+<h2>Patents we reviewed</h2>
+<div class="table-wrap"><table><thead><tr><th class="">Patent</th><th class="">Title</th><th class="">Assignee</th></tr></thead><tbody><tr><td class=""><span class="mono">US 6,547,189 B1</span></td><td class="">Inflatable vessel and method (TransHab)</td><td class="">NASA, 2003</td></tr><tr><td class=""><span class="mono">US 10,022,556 B1</span></td><td class="">Solid-state lighting assembly emulating the diurnal cycle</td><td class="">NASA, 2018</td></tr><tr><td class=""><span class="mono">US 11,076,788 B2</span></td><td class="">Deriving a mental state of a subject from wearables</td><td class="">Nitto Denko, 2021</td></tr></tbody></table></div>
+<p>Each of these solves one piece: the structure, a lighting schedule, or stress detection from a wearable. None of them connects a measured crew state back to the habitat. That connection is what Aether adds.</p>
+
+</div></main>
+<footer><div class="wrap">
+  <div class="partners">
+    <a class="tile" href="https://nasahunch.com" rel="noopener"><img src="assets/nasa-hunch.png" alt="NASA HUNCH"></a>
+    <span class="tile"><img src="assets/frisco-cte.png" alt="Frisco ISD Career and Technical Education Center"></span>
+  </div>
+  <p style="margin-top:1rem">Aether is a NASA HUNCH 2026–27 project by students at the Frisco ISD Career and Technical Education Center.</p>
+  <p class="small muted">Dimensions, test results and power figures on this site come from our own project documents and experiments and have not been independently verified against NASA sources.</p>
+  <p class="links"><a href="index.html">Home</a><a href="problem.html">Problem &amp; Research</a><a href="habitat.html">Habitat</a><a href="ai.html">AI &amp; Data</a><a href="electronics.html">Electronics</a><a href="timeline.html">Timeline</a><a href="team.html">Team</a><a href="contact.html">Contact</a></p>
+</div></footer>
+<script>
+(function(){var t=document.getElementById("navToggle"),n=document.getElementById("nav");t.addEventListener("click",function(){var o=n.classList.toggle("open");t.setAttribute("aria-expanded",o);});})();
+</script>
+</body>
+</html>

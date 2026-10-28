@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Timeline — Aether</title>
+<meta name="description" content="Project schedule.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="css/aether.css">
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="index.html"><img src="assets/favicon.png" alt="Aether logo">AETHER</a>
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav id="nav"><a href="index.html">Home</a><a href="problem.html">Problem &amp; Research</a><a href="habitat.html">Habitat</a><a href="ai.html">AI &amp; Data</a><a href="electronics.html">Electronics</a><a href="timeline.html" class="active">Timeline</a><a href="team.html">Team</a><a href="contact.html">Contact</a></nav>
+</div></header>
+<main><div class="wrap">
+
+<h1>Timeline</h1>
+<p>We ran an accelerated schedule to a critical design review on October 25, 2026, ahead of the course calendar, so that the rest of the year can go into the model and the electronics.</p>
+<div class="table-wrap"><table><thead><tr><th class="">When</th><th class="">What</th><th class="">Status</th></tr></thead><tbody><tr><td class="">Sep 18–24</td><td class="">Problem statement, constraints, research, decision matrix, storyboards</td><td class="">Done</td></tr><tr><td class="">Sep 25–Oct 2</td><td class="">Diagrams, wiring plan, breadboard, baseplate and deck models</td><td class="">Done</td></tr><tr><td class="">Oct 3–10</td><td class="">Dashboard, adaptation engine, serial link, closed-loop test</td><td class="">Done</td></tr><tr><td class="">Oct 11–17</td><td class="">Model finishes, 3-minute video, notebook audit, portfolio</td><td class="">Done</td></tr><tr><td class="">Oct 18–25</td><td class="">Trifold board, practice defenses, accelerated CDR</td><td class="">Done</td></tr><tr><td class="">Oct 26 on</td><td class="">Project website; firmware and dashboard updates</td><td class="">In progress</td></tr><tr><td class="">Nov–Dec</td><td class="">Wire the model, bench-test the firmware, film the live loop</td><td class="">Planned</td></tr><tr><td class="">Feb 4, 2027</td><td class="">Course milestone: 60%+ working prototype and presentation board</td><td class="">Planned</td></tr><tr><td class="">Feb 26, 2027</td><td class="">Course display board</td><td class="">Planned</td></tr></tbody></table></div>
+
+<h2>How the work is split</h2>
+<ul>
+  <li><b>Hardware and structures</b> — baseplate, 3D-printed habitat, wiring, controller.</li>
+  <li><b>AI, software and sensors</b> — crew-state model, adaptation engine, dashboard, this site.</li>
+  <li><b>Human factors, life support and presentation</b> — zoning, greenhouse, storyboards, trifold, video.</li>
+</ul>
+
+<h2>What we have learned so far</h2>
+<ul>
+  <li>Snap-fit slots that model at 1.8 mm print too tight; 2.2 mm with a test kit worked better.</li>
+  <li>Fewer, larger print pieces beat many small ones on a school printer schedule.</li>
+  <li>Describe the AI as decision support, never as diagnosis.</li>
+</ul>
+
+</div></main>
+<footer><div class="wrap">
+  <div class="partners">
+    <a class="tile" href="https://nasahunch.com" rel="noopener"><img src="assets/nasa-hunch.png" alt="NASA HUNCH"></a>
+    <span class="tile"><img src="assets/frisco-cte.png" alt="Frisco ISD Career and Technical Education Center"></span>
+  </div>
+  <p style="margin-top:1rem">Aether is a NASA HUNCH 2026–27 project by students at the Frisco ISD Career and Technical Education Center.</p>
+  <p class="small muted">Dimensions, test results and power figures on this site come from our own project documents and experiments and have not been independently verified against NASA sources.</p>
+  <p class="links"><a href="index.html">Home</a><a href="problem.html">Problem &amp; Research</a><a href="habitat.html">Habitat</a><a href="ai.html">AI &amp; Data</a><a href="electronics.html">Electronics</a><a href="timeline.html">Timeline</a><a href="team.html">Team</a><a href="contact.html">Contact</a></p>
+</div></footer>
+<script>
+(function(){var t=document.getElementById("navToggle"),n=document.getElementById("nav");t.addEventListener("click",function(){var o=n.classList.toggle("open");t.setAttribute("aria-expanded",o);});})();
+</script>
+</body>
+</html>
